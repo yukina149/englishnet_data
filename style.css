@@ -43,7 +43,12 @@ h1 {
     width: 100%;
     border-top: 3px solid black;
 }
-
+.button-group {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+}
 nav {
     display: flex;
     justify-content: center;

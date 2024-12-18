@@ -1,8 +1,13 @@
 <?php include('header.html'); ?>
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!--using Bootstrap 5 css -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--Using Bootstrap 5 js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/2eac5448b1.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> <!-- 載入 JQuery --></head>
 <main>
-    <section id="game">
+    <section id="test">
         <h2>測驗</h2>
     <?php
         session_start();
@@ -61,12 +66,13 @@
             exit;
         }
         // Handle restart action
-        if (isset($_POST['restart'])) {
-            session_destroy();
-            //導回網頁
-            header("Location: test_start.php");
-            exit;
-        }
+        /*if (isset($_POST['restart'])) {
+        session_destroy();
+        //導回網頁
+        header("Location: test_start.php");
+        exit;
+        }   */
+
 
 
         // Debugging log for current state
@@ -96,30 +102,34 @@
                 </label><br><br>
                 <div class="container">
                     <div class="row">
-                        <div class="col">
-                            <button type="submit">提交答案</button>
-                        </div>
-                        <div class="col">
-                            <button type="submit" name="restart">從頭開始作答</button>
-                        </div>
+                        <div class="button-group">
+                            <button type="submit" class="btn btn-light">提交答案</button>
+                        
+                            <?php if ($show_next_button) { ?>
+                                <form method="post" style="margin-top: 10px display: inline;">
+                                    <button type="submit" name="next" class="btn btn-dark">下一題</button>
+                                </form>
+                            <?php } ?>
+
+                        </div>   
+                        
                     </div>
+                   
                 </div>
             </form>
+            <br>
             <?php if ($feedback) echo $feedback; ?>
-            <?php if ($show_next_button) { ?>
-                <form method="post" style="margin-top: 10px;">
-                    <button type="submit" name="next">下一題</button>
-                </form>
-            <?php } ?>
+            <br>
+            <form method="post" action="test_start.php" style="display: inline;">
+                <button type="submit" class="btn btn-secondary margin-top: 10px display: inline;" name="restart">從頭開始作答</button>
+            </form>
+            
         </div>
-
+    </section>
 </main>
     <?php
     $conn->close();
     ?>
-    
-
-
     <footer>
 		<?php include("footer.php"); ?>
     </footer>
