@@ -11,8 +11,8 @@
         <h2>測驗</h2>
     <?php
     //設定分數跟題數
-        $score=0;
-        $correct_sum=0;
+        //$score=0;
+        //$correct_sum=0;
         session_start();
         
         
@@ -47,8 +47,8 @@
             $question = $result->fetch_assoc();
         } else {
             echo "<p>測驗結束！</p>";
-            echo "分數是 $score <br>";
-            echo "答對了： $correct_sum 題<br>";
+            //echo "分數是 $score <br>";
+           // echo "答對了： $correct_sum 題<br>";
             echo '<button onclick="location.href=\'index.php\'" class="btn btn-dark">回到首頁</button>';
             session_unset();
             session_destroy();
@@ -64,8 +64,8 @@
         if ($user_answer) {
             $correct_answer = $question['correct_answer'];
             if ($user_answer === $correct_answer) {
-                $score+=10;
-                $correct_sum+=1;
+                //$score+=10;
+                //$correct_sum+=1;
                 $feedback = "<p>恭喜答對！</p>";
             } else {
                 $feedback = "<p>不正確，這題答案是: $correct_answer</p>";
