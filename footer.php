@@ -6,10 +6,10 @@
 		<br>
 		
 		<div class="footer-links">
-			<a href="#home">首頁</a>
+			<a href="index.php">首頁</a>
 			<a href="#movie">教學影片</a>
 			<a href="#read">文章閱讀</a>
-			<a href="#game">單字測驗</a>
+			<a href="test_start.php">單字測驗</a>
 			<a href="#study">學習進度表</a>
 		</div>
 		<br>
