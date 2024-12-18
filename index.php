@@ -12,10 +12,8 @@
         <p>還沒想好要放什麼內容</p>
     </section>
 </main>
-
-
     <footer>
-		<?php include("footer.php"); ?>
+		<?php include("footer.html"); ?>
     </footer>
 </body>
 </html>

@@ -46,9 +46,10 @@ h1 {
 .button-group {
     display: flex;
     justify-content: flex-start;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 10px; /* 控制按鈕間的間距 */
+    margin-top: 10px; /* 確保沒有外邊距 */
 }
+
 nav {
     display: flex;
     justify-content: center;
