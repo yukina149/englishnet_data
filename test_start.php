@@ -4,8 +4,11 @@
 
 <main>
     <section id="game">
-        <h2>首頁</h2>
-        <p>還沒想好要放什麼內容</p>
+        <h2>測驗</h2>
+        <p>準備好測試自己對上方的文章了解度了嗎？點擊下方按鈕開始測驗！</p>
+        <form action="english_net.php" method="post">
+            <button type="submit" class="btn btn-primary">開始測驗</button>
+        </form>
     </section>
 </main>
 

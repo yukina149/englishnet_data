@@ -2,10 +2,6 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <main>
-    <section id="read">
-        <h2>文章閱讀</h2>
-        <p>hi</p>
-    </section>
     <section id="game">
         <h2>測驗</h2>
     <?php
@@ -67,7 +63,8 @@
         // Handle restart action
         if (isset($_POST['restart'])) {
             session_destroy();
-            header("Location: index.php");
+            //導回網頁
+            header("Location: test_start.php");
             exit;
         }
 

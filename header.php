@@ -25,10 +25,10 @@
             <span class="bar"></span>
         </label>
         <ul class="navbar-menu">
-            <li><a href="#home">首頁</a></li>
+            <li><a href="index/php">首頁</a></li>
             <li><a href="#movie">教學影片</a></li>
 			<li><a href="#read">文章閱讀</a></li>
-            <li><a href="#game">單字測驗</a></li>
+            <li><a href="test_start.php">單字測驗</a></li>
             <li><a href="#study">學習進度表</a></li>
         </ul>
     </nav>
