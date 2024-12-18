@@ -79,15 +79,12 @@
             header("Location: " . $_SERVER['PHP_SELF']);
             exit;
         }
-        // 原本是要寫按下按鈕從頭開始就會清空session但是按鈕的位置就不能下移，尚未解決 哭
-        /*if (isset($_POST['restart'])) {
-        session_destroy();
-        //導回網頁
-        header("Location: test_start.php");
-        exit;
-        }   */
-
-
+        if (isset($_POST['restart'])) {
+            session_unset(); // 清空所有會話變數
+            session_destroy(); // 結束會話
+            header("Location: test_start.php"); // 導向首頁或其他頁面
+            exit;
+        }
 
         // Debugging log for current state
         error_log("Current Question Index: $current_index");
@@ -134,7 +131,7 @@
             <?php if ($feedback) echo $feedback; ?> 
             <div class="button-group">
                 <div class="row">
-                    <form method="post" action="test_start.php" style="display: inline;">
+                    <form method="post" style="display: inline;">
                         <button type="submit" class="btn btn-secondary" name="restart">從頭開始</button>
                     </form>
                 </div>
