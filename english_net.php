@@ -10,11 +10,18 @@
     <section id="test">
         <h2>測驗</h2>
     <?php
-    //設定分數跟題數
-        //$score=0;
-        //$correct_sum=0;
         session_start();
+        if (!isset($_SESSION['score'])) {
+            $_SESSION['score'] = 0;
+        }
         
+        if (!isset($_SESSION['correct_sum'])) {
+            $_SESSION['correct_sum'] = 0;
+        }
+        
+        // 使用 session 變數
+        $score = $_SESSION['score'];
+        $correct_sum = $_SESSION['correct_sum'];
         
             //資料庫的連接
             $servername = "my-db1.c4li6gbfgebb.us-east-1.rds.amazonaws.com";
@@ -47,9 +54,11 @@
             $question = $result->fetch_assoc();
         } else {
             echo "<p>測驗結束！</p>";
-            //echo "分數是 $score <br>";
-           // echo "答對了： $correct_sum 題<br>";
-            echo '<button onclick="location.href=\'index.php\'" class="btn btn-dark">回到首頁</button>';
+            echo "分數是 {$_SESSION['score']} <br>";
+            echo "答對了： {$_SESSION['correct_sum']} 題<br>";
+            echo '<form method="post">';
+            echo '<button type="submit" name="restart" class="btn btn-dark">回到首頁並重新開始</button>';
+            echo '</form>';
             session_unset();
             session_destroy();
             exit;
@@ -64,8 +73,10 @@
         if ($user_answer) {
             $correct_answer = $question['correct_answer'];
             if ($user_answer === $correct_answer) {
-                //$score+=10;
-                //$correct_sum+=1;
+                $score += 10; // 增加分數
+                $correct_sum += 1; // 增加正確題數
+                $_SESSION['score'] =$score;
+                $_SESSION['correct_sum'] =$correct_sum;
                 $feedback = "<p>恭喜答對！</p>";
             } else {
                 $feedback = "<p>不正確，這題答案是: $correct_answer</p>";
@@ -77,6 +88,12 @@
         if (isset($_POST['next'])) {
             $_SESSION['current_question_index']++;
             header("Location: " . $_SERVER['PHP_SELF']);
+            exit;
+        }
+        if (isset($_POST['restart'])) {
+            session_unset(); // 清空所有會話變數
+            session_destroy(); // 結束會話
+            header("Location: test_start.php"); // 導向首頁或其他頁面
             exit;
         }
         // 原本是要寫按下按鈕從頭開始就會清空session但是按鈕的位置就不能下移，尚未解決 哭
@@ -134,7 +151,7 @@
             <?php if ($feedback) echo $feedback; ?> 
             <div class="button-group">
                 <div class="row">
-                    <form method="post" action="test_start.php" style="display: inline;">
+                    <form method="post" style="display: inline;">
                         <button type="submit" class="btn btn-secondary" name="restart">從頭開始</button>
                     </form>
                 </div>
@@ -151,5 +168,3 @@
     </footer>
 </body>
 </html>
-
-
