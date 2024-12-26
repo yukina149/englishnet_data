@@ -33,6 +33,12 @@ h1 {
     margin-left: 10px;
     cursor: pointer;
 }
+.videobox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:2% ;
+}
 
 .login-button {
     background-color: white;
