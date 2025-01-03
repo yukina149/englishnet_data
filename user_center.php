@@ -8,7 +8,7 @@
             您好
             <p>這裡是您的用戶中心頁面。</p>
         </div>
-        <button class="btn btn-danger" onclick="location.href='logout.php';">登出</button>
+        <input type="button" onclick="location.href='logout.php';" class="btn btn-danger" value="登出" />
     </div>
 </section>
         <?php include("footer.html"); ?>

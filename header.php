@@ -37,14 +37,15 @@ session_start();
         <form class="d-flex">
         <!--如果有userid的存在 就顯示登出跟用戶中心的按鈕-->
             <?php if (isset($_SESSION['user_id'])): ?>
-                <button class="btn btn-danger"><a href="logout.php" style="color: white; text-align:center;">登出</a></button>
+                <input type="button" onclick="location.href='logout.php';" class="btn btn-danger" value="登出" />
                 &nbsp
-                <button class="btn btn-primary"><a href="user_center.php" style="color: white; text-align:center;">用戶中心</a></button>
+                <input type="button" onclick="location.href='user_center.php';" class="btn btn-success" value="用戶中心" />
             <!--否則就顯示登出跟用戶中心的按鈕-->
             <?php else: ?>
-                <button class="btn btn-success"><a href="register.php" style="color: white; text-align:center;">註冊</a></button>
+                
+                <input type="button" onclick="location.href='register.php';" class="btn btn-success" value="註冊" />
                 &nbsp
-                <button class="btn btn-primary"><a href="login.php" style="color: white; text-align:center;">登入</a></button>
+                <input type="button" onclick="location.href='login.php';" class="btn btn-primary" value="登入" />
             <?php endif; ?>
         </form>
     </nav>

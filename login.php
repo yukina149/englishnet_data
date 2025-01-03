@@ -40,7 +40,7 @@ include('header.php');
 
             if ($result->num_rows == 1) {
                 $row = $result->fetch_assoc();
-                echo "$row\n";
+                //echo "$row\n";
                 // 驗證密碼
                 if (password_verify($password, $row['password'])) {
                     // 登入成功，可以設置 session 或 cookie
@@ -50,9 +50,8 @@ include('header.php');
                 } else {
                     $hash = password_hash($password, PASSWORD_DEFAULT);
                     $rowpassword = $row['password'];
-                    echo "$hash\n";
-                    echo "$rowpassword";
-                    //echo "<script>alert(\"密碼錯誤\"); location.href=\"login.php\";</script>";
+                    echo "<script>alert(\"密碼錯誤\"); location.href=\"login.php\";</script>";
+                    //echo "$rowpassword";
                 }
             } else {
                 echo "<script>alert(\"使用者不存在\"); location.href=\"login.php\";</script>";
@@ -60,6 +59,8 @@ include('header.php');
 
             $result->close();
         }
+
+        
         ?>
         <div class="container">
             <form method="post">

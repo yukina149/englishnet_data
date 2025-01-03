@@ -11,7 +11,10 @@
         <h2>測驗</h2>
    <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 //設定session題數
 if (!isset($_SESSION['correct_sum'])) {
     $_SESSION['correct_sum'] = 0;
@@ -20,6 +23,12 @@ if (!isset($_SESSION['correct_sum'])) {
 $correct_sum = $_SESSION['correct_sum'];
 $score = $correct_sum * 10;
 
+//除掉session(但不要全部的，只要跟題目有關的就好，不然用戶登入資料也會出問題)
+function kill_session(){
+    unset($_SESSION['correct_sum']);
+    unset($_SESSION['current_question_index']);
+}
+
 // 資料庫的連接
 $servername = "my-db1.c4li6gbfgebb.us-east-1.rds.amazonaws.com";
 $username = "admin";
@@ -27,7 +36,7 @@ $password = "12345678";
 $dbname = "mydata";
 /*$servername = '127.0.0.1:3307';
 $username= 'root';
-$password = 'K8z3$N&w264qu';
+$password = '';
 $dbname = 'mydb_01';*/
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -55,9 +64,8 @@ if ($result->num_rows > 0) {
     echo "分數是 $score <br>";
     echo "答對了： $correct_sum 題<br>";
     echo '<button onclick="location.href=\'index.php\'" class="btn btn-dark">回到首頁</button>';
-    session_unset();
-    session_destroy();
-    exit;
+    kill_session();
+    exit();
 }
 //把用戶回答的值賦予給user_answer
 $user_answer = $_POST['answer'] ?? null;
@@ -82,8 +90,7 @@ if ($action === 'submit') {
     exit;
 } elseif ($action === 'restart') {
     // 處理重新開始
-    session_unset();
-    session_destroy();
+    kill_session();
     header("Location: test_start.php");
     exit;
 }
