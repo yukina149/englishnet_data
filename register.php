@@ -1,4 +1,4 @@
-<?php include('header.html'); ?>
+<?php include('header.php'); ?>
 <link rel="stylesheet" href="style.css">
 <!--using Bootstrap 5 css -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
         echo "<script>alert(\"註冊成功！\"); location.href=\"login.php\";</script>";
         die;
     } else {
-        $result->error;
+        $error = $conn->error; 
         echo "<script>alert(\"註冊失敗：$error\"); location.href=\"register.php\";</script>";
     }
     $result->close();
@@ -80,6 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'register') {
             <div class="form-group">
                 <label for="confirm_password">確認密碼：</label>
                 <input type="password" id="password" name="confirm_password" class="form-control" required>
+                &nbsp
             </div>
             <button type="submit" name="action" value="register" class="btn btn-primary">註冊</button>
         </form>
@@ -92,6 +93,6 @@ $conn->close();
 		<?php include("footer.html"); ?>
     </footer>
 </body>
-</html>
+
 
 

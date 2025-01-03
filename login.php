@@ -1,5 +1,5 @@
 <?php
-include('header.html');
+include('header.php');
 ?>
 <link rel="stylesheet" href="style.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -70,6 +70,7 @@ include('header.html');
                 <div class="form-group">
                     <label for="password">密碼：</label>
                     <input type="password" id="password" name="password" class="form-control" required>
+                    &nbsp
                 </div>
                 <button type="submit" name="action" value="login" class="btn btn-primary">登入</button>
             </form>
@@ -79,4 +80,3 @@ include('header.html');
         <?php include("footer.html"); ?>
     </footer>
 </body>
-</html>

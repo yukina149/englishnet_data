@@ -1,4 +1,4 @@
-<?php include('header.html'); ?>
+<?php include('header.php'); ?>
 <section id="article">
     <article>
         <h1>Boeing plea deal over fatal Max crashes rejected</h1>
